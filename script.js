@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (document.getElementById('menu-plaats')) {
 		load_html_file('Menu/menu.html', 'menu-plaats');
 	}
+
+		// laad de footer als er een element met id="footer-placeholder" bestaat
+		if (document.getElementById('footer-placeholder')) {
+			load_html_file('footer/footer.html', 'footer-placeholder');
+		}
 	
-	// laad de footer als er een element met id="footer-plaats" bestaat
-	if (document.getElementById('footer-plaats')) {
-		load_html_file('footer.html', 'footer-plaats');
-	}
-	
-});
+	});

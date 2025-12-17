@@ -1,4 +1,4 @@
-<div id="footer-placeholder"></div>
-<script src="footer.js"></script>
+    <div id="footer-placeholder"></div>
+    <script src="footer/js/footer.js"></script>
 
 Voeg dit toe aan de body van je HTML-document waar je de footer wilt weergeven.

@@ -1,0 +1,253 @@
+:root{
+  --red:#c1272d;        /* Marokko rood */
+  --green:#006233;      /* Marokko groen */
+  --bg:#f6f7fb;         /* zachte achtergrond */
+  --card:#ffffff;       /* kaart */
+  --text:#111827;       /* bijna zwart */
+  --muted:#6b7280;      /* grijs */
+  --border:#e5e7eb;     /* light border */
+  --shadow: 0 10px 30px rgba(17,24,39,.08);
+  --radius: 16px;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background:
+    radial-gradient(900px 500px at 15% 0%, rgba(193,39,45,.10), transparent 60%),
+    radial-gradient(900px 500px at 85% 0%, rgba(0,98,51,.10), transparent 60%),
+    var(--bg);
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+main{ flex:1; }
+
+.container{
+  width:min(1040px, 92vw);
+  margin:0 auto;
+  padding:28px 0 48px;
+}
+
+header{
+  background: linear-gradient(135deg, rgba(193,39,45,1), rgba(0,98,51,1));
+  color:#fff;
+  padding:38px 0;
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:"";
+  position:absolute; inset:-40px;
+  background:
+    radial-gradient(400px 220px at 15% 25%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(420px 260px at 85% 35%, rgba(255,255,255,.12), transparent 60%);
+  pointer-events:none;
+}
+header .container{ padding:0; }
+header h1{
+  margin:0;
+  font-size: clamp(26px, 3vw, 40px);
+  letter-spacing:.2px;
+}
+header p{
+  margin:10px 0 0;
+  color:rgba(255,255,255,.9);
+  max-width:70ch;
+  line-height:1.6;
+}
+@media (max-width: 520px){
+  nav .container{ justify-content: flex-start; padding: 10px 0; }
+  nav a{ padding: 9px 12px; font-weight: 700; }
+}
+.page{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(18px, 2.2vw, 30px);
+}
+
+.kicker{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  font-weight:700;
+  color:var(--muted);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:.78rem;
+}
+.kicker::before{
+  content:"";
+  width:10px; height:10px;
+  border-radius:3px;
+  background: linear-gradient(135deg, var(--red), var(--green));
+  box-shadow: 0 0 0 3px rgba(193,39,45,.10);
+}
+
+h1{
+  margin:10px 0 10px;
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height:1.15;
+}
+h2{
+  margin:26px 0 10px;
+  font-size: clamp(18px, 2vw, 22px);
+}
+p{
+  margin: 12px 0;
+  line-height:1.8;
+  color:#111827;
+  max-width: 78ch;
+}
+.lead{
+  font-size:1.05rem;
+  color:#1f2937;
+}
+
+.hr{
+  height:1px;
+  background: linear-gradient(90deg, transparent, rgba(193,39,45,.25), rgba(0,98,51,.25), transparent);
+  margin:24px 0;
+}
+
+.grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top:18px;
+}
+.card{
+  grid-column: span 6;
+  border:1px solid var(--border);
+  border-radius: 14px;
+  padding:16px;
+  background: linear-gradient(180deg, #fff, #fff);
+}
+.card h3{
+  margin:0 0 6px;
+  font-size:1rem;
+}
+.card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.65;
+}
+
+@media (max-width: 820px){
+  .card{ grid-column: span 12; }
+}
+
+figure{
+  margin:18px 0;
+  border:1px solid var(--border);
+  border-radius: 14px;
+  overflow:hidden;
+  background:#fff;
+}
+figure img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+figcaption{
+  padding:10px 12px;
+  font-size:.92rem;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+}
+
+footer{
+  margin-top:28px;
+  background:#0b1220;
+  color:rgba(255,255,255,.85);
+  padding:18px 0;
+}
+footer .container{
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+footer a{ color:#fff; opacity:.9; text-decoration:none; }
+footer a:hover{ text-decoration:underline; }
+
+footer,
+footer p,
+footer a,
+footer span {
+  color: rgba(255,255,255,.92) !important;
+}
+/* ===== MAROKKO VLAG IN MENU (VEILIGE VARIANT) ===== */
+
+/* jouw menu element */
+#menu-plaats nav.main-menu{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;       /* hier mag het wél: alleen het menu zelf */
+  isolation: isolate;     /* super belangrijk: fixe z-index lagen betrouwbaar */
+  backdrop-filter: blur(10px);
+}
+
+/* vlag achter de inhoud */
+#menu-plaats nav.main-menu::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: url("../img/morocco-flag.png") center / cover no-repeat;
+  opacity: .12;
+  filter: saturate(1.1) contrast(1.05);
+  z-index: -2;            /* achter alles */
+  pointer-events:none;
+}
+
+/* glaslaag tussen vlag en tekst */
+#menu-plaats nav.main-menu::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index: -1;
+  pointer-events:none;
+}
+
+/* lijst layout */
+#menu-plaats nav.main-menu ul{
+  list-style:none;
+  margin:0;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+#menu-plaats nav.main-menu li{ margin:0; }
+
+/* bubbels */
+#menu-plaats nav.main-menu a{
+  display:block;
+  padding:10px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:800;
+  color: var(--text);
+
+  border: 1px solid rgba(229,231,235,.9);
+  box-shadow: 0 10px 22px rgba(17,24,39,.10);
+
+  transition: transform .08s ease, box-shadow .15s ease, background .15s ease;
+}
+
+#menu-plaats nav.main-menu a:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 16px 30px rgba(17,24,39,.14);
+}
