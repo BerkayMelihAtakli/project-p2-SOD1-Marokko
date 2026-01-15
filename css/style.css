@@ -251,3 +251,202 @@ footer span {
   background: rgba(255,255,255,.97);
   box-shadow: 0 16px 30px rgba(17,24,39,.14);
 }
+/* ===== NIEUW MENU: TOPBAR + DROPDOWN + MOBILE ===== */
+
+#menu-plaats nav.main-menu{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin: 12px auto 0;
+  width: min(1040px, 92vw);
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+/* vlag-achtergrond, maar subtiel */
+#menu-plaats nav.main-menu::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: url("../img/morocco-flag.png") center / cover no-repeat;
+  opacity: .10;
+  z-index: -2;
+  pointer-events:none;
+}
+
+#menu-plaats nav.main-menu::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,.72);
+  z-index: -1;
+  pointer-events:none;
+}
+
+#menu-plaats .menu-inner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding: 10px 12px;
+}
+
+/* branding */
+#menu-plaats .brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight: 900;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+#menu-plaats .brand-dot{
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--red), var(--green));
+  box-shadow: 0 0 0 3px rgba(193,39,45,.12);
+}
+
+/* primary links */
+#menu-plaats .menu-primary{
+  list-style:none;
+  display:flex;
+  gap:10px;
+  margin:0;
+  padding:0;
+  flex: 1;
+  justify-content:center;
+}
+
+#menu-plaats .menu-primary a,
+#menu-plaats .menu-more summary,
+#menu-plaats .menu-mobile summary{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight: 800;
+  color: var(--text);
+  border: 1px solid rgba(229,231,235,.95);
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 10px 22px rgba(17,24,39,.08);
+  cursor:pointer;
+  transition: transform .08s ease, box-shadow .15s ease, background .15s ease;
+}
+
+#menu-plaats .menu-primary a:hover,
+#menu-plaats .menu-more summary:hover,
+#menu-plaats .menu-mobile summary:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 16px 30px rgba(17,24,39,.12);
+}
+
+/* CTA (Donatieformulier) */
+#menu-plaats a.cta{
+  background: linear-gradient(135deg, rgba(193,39,45,.95), rgba(0,98,51,.95));
+  color: #fff;
+  border-color: transparent;
+}
+#menu-plaats a.cta:hover{
+  filter: brightness(1.03);
+}
+
+/* dropdown */
+#menu-plaats details.menu-more{
+  position: relative;
+}
+#menu-plaats details.menu-more summary{
+  list-style: none;
+}
+#menu-plaats details.menu-more summary::-webkit-details-marker{ display:none; }
+
+#menu-plaats .menu-dropdown{
+  position:absolute;
+  right:0;
+  top: calc(100% + 10px);
+  width: min(340px, 80vw);
+  list-style:none;
+  margin:0;
+  padding:10px;
+  background: rgba(255,255,255,.96);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display:grid;
+  gap:8px;
+}
+
+#menu-plaats .menu-dropdown a{
+  display:block;
+  padding:10px 12px;
+  border-radius: 12px;
+  text-decoration:none;
+  font-weight: 750;
+  color: var(--text);
+  border: 1px solid rgba(229,231,235,.9);
+  background: #fff;
+}
+#menu-plaats .menu-dropdown a:hover{
+  background: rgba(17,24,39,.04);
+}
+
+/* mobile */
+#menu-plaats details.menu-mobile{
+  display:none;
+  position: relative;
+}
+#menu-plaats details.menu-mobile summary{
+  list-style:none;
+}
+#menu-plaats details.menu-mobile summary::-webkit-details-marker{ display:none; }
+
+#menu-plaats .menu-mobile-list{
+  position:absolute;
+  right:0;
+  top: calc(100% + 10px);
+  width: min(360px, 88vw);
+  list-style:none;
+  margin:0;
+  padding:10px;
+  background: rgba(255,255,255,.96);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display:grid;
+  gap:8px;
+}
+
+#menu-plaats .menu-mobile-list a{
+  display:block;
+  padding:10px 12px;
+  border-radius: 12px;
+  text-decoration:none;
+  font-weight: 750;
+  color: var(--text);
+  border: 1px solid rgba(229,231,235,.9);
+  background: #fff;
+}
+
+#menu-plaats .menu-mobile-list .sep{
+  height:1px;
+  background: var(--border);
+  margin:6px 4px;
+}
+
+/* responsive switch: hide center links, show hamburger */
+@media (max-width: 860px){
+  #menu-plaats .menu-primary{ display:none; }
+  #menu-plaats details.menu-more{ display:none; }
+  #menu-plaats details.menu-mobile{ display:block; }
+  #menu-plaats .menu-inner{ justify-content: space-between; }
+}
