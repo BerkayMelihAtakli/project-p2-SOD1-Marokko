@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <title>Donatie doorgeven</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Jullie bestaande CSS -->
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -17,6 +16,36 @@
   <main class="container">
     <h1>Donatie doorgeven</h1>
     <p>Via dit formulier kun je aangeven dat je een donatie wilt doen.</p>
+
+    <section class="donatie-progress" aria-label="Donatie voortgang">
+  <div class="progress-top">
+    <h2>Actie voortgang</h2>
+    <p class="muted">Help ons het doel te bereiken. Elke euro telt.</p>
+  </div>
+
+  <div class="progress-stats">
+    <div>
+      <div class="stat-label">Opgehaald</div>
+      <div class="stat-value" id="raisedAmount">€ 3.500</div>
+    </div>
+    <div>
+      <div class="stat-label">Doel</div>
+      <div class="stat-value" id="goalAmount">€ 5.000</div>
+    </div>
+    <div>
+      <div class="stat-label">Percentage</div>
+      <div class="stat-value" id="percentAmount">70%</div>
+    </div>
+  </div>
+
+  <div class="progress-bar" role="progressbar"
+       aria-valuemin="0" aria-valuemax="5000" aria-valuenow="3500"
+       aria-label="Voortgangsbalk donaties">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <p class="progress-hint" id="remainingText">Nog € 1.500 te gaan</p>
+</section>
 
     <form>
       <label>Volledige naam *</label>
@@ -48,16 +77,16 @@
         <label><input type="radio" name="wijze"> Incasso-opdracht</label>
       </fieldset>
 
-      <label>Bedrag (€) *</label>
-      <input type="number" step="0.01" required>
+       <label for="bedrag">Bedrag van donatie (€) *</label>
+       <input type="number" id="bedrag" name="bedrag" required step="0.01" min="0.01" placeholder="25.00">
 
-      <button type="submit">Verzenden</button>
+      <button type="submit">Doneer</button>
       <button type="reset">Annuleren</button>
     </form>
   </main>
 
   <div id="footer-placeholder"></div>
-
-  <script src="script.js"></script>
+<script src="donatie.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
