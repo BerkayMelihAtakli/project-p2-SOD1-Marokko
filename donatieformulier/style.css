@@ -1,0 +1,42 @@
+/* ===== Donatie progress ===== */
+.donatie-progress{
+  margin: 18px 0 22px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 10px 22px rgba(17,24,39,.06);
+}
+
+.donatie-progress .muted{ color: var(--muted); margin-top: 6px; }
+
+.progress-stats{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0 12px;
+}
+.stat-label{ font-size: .85rem; color: var(--muted); font-weight: 700; }
+.stat-value{ font-size: 1.2rem; font-weight: 900; }
+
+.progress-bar{
+  height: 16px;
+  border-radius: 999px;
+  background: rgba(17,24,39,.08);
+  overflow: hidden;
+  border: 1px solid rgba(229,231,235,.95);
+}
+
+.progress-fill{
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--red), var(--green));
+  transition: width 700ms ease;
+}
+
+.progress-hint{ margin: 10px 0 0; color: var(--muted); font-weight: 700; }
+
+@media (max-width: 720px){
+  .progress-stats{ grid-template-columns: 1fr; }
+}
