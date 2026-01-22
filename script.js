@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// laad de header als er een element met id="header-plaats" bestaat
 	if (document.getElementById('header-plaats')) {
-		load_html_file('header.html', 'header-plaats');
+		load_html_file('Header/header.html', 'header-plaats');
 	}
 	
 	// laad het menu als er een element met id="menu-plaats" bestaat

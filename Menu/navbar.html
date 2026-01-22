@@ -1,0 +1,19 @@
+<nav class="main-menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="marokko.html">Over Marokko</a></li>
+            <li><a href="goede-doelen.html">Goede Doelen</a></li>
+            <li><a href="projecten.html">Projecten</a></li>
+            <li><a href="doneer.html">Doneer</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+       <div id="navbar"></div>
+        <script>
+            fetch("navbar.html")
+            .then(Response => Response.text())
+            .then(data =>{
+                document.getElementById("navbar").innerHTML = data;
+
+            });
+        </script>
