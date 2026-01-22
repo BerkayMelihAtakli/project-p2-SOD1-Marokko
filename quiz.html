@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz – Goed doel</title>
+
+  <!-- jouw bestaande css -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- quiz extra styling -->
+  <style>
+    .quiz-wrap{ max-width: 900px; margin: 0 auto; }
+    .quiz-card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 2.2vw, 28px);
+      margin-top: 18px;
+    }
+
+    .quiz-top{
+      display:flex; flex-wrap:wrap; gap:12px;
+      align-items:center; justify-content:space-between;
+      margin-bottom: 14px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      font-weight: 800;
+    }
+    .pill small{ color: var(--muted); font-weight: 800; letter-spacing:.02em; }
+
+    .q-title{ margin: 8px 0 14px; font-size: clamp(18px, 2vw, 22px); }
+    .answers{ display:grid; gap:10px; }
+
+    .answer-btn{
+      text-align:left;
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(229,231,235,.95);
+      background: rgba(255,255,255,.92);
+      font-weight: 800;
+      cursor:pointer;
+      transition: transform .08s ease, box-shadow .15s ease, background .15s ease;
+      box-shadow: 0 10px 22px rgba(17,24,39,.06);
+    }
+    .answer-btn:hover{ transform: translateY(-1px); box-shadow: 0 16px 30px rgba(17,24,39,.10); }
+    .answer-btn:disabled{ cursor:not-allowed; opacity:.9; transform:none; }
+
+    /* feedback states */
+    .answer-btn.correct{
+      border-color: rgba(0,98,51,.35);
+      background: rgba(0,98,51,.10);
+    }
+    .answer-btn.wrong{
+      border-color: rgba(193,39,45,.35);
+      background: rgba(193,39,45,.10);
+    }
+    .explain{
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.92);
+      color: var(--text);
+      display:none;
+    }
+    .explain.show{ display:block; }
+    .explain strong{ display:block; margin-bottom: 6px; }
+
+    .quiz-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 16px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .btn{
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(229,231,235,.95);
+      background: rgba(255,255,255,.92);
+      font-weight: 900;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border-color: transparent;
+      color:#fff;
+      background: linear-gradient(135deg, rgba(193,39,45,.95), rgba(0,98,51,.95));
+    }
+    .btn:disabled{ opacity:.6; cursor:not-allowed; }
+
+    /* result screen */
+    .result{
+      display:none;
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.92);
+    }
+    .result.show{ display:block; }
+    .result h2{ margin:0 0 10px; }
+    .result p{ margin: 8px 0; color: var(--text); }
+    .result .big{
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 1000;
+      line-height: 1.1;
+      margin: 6px 0 10px;
+    }
+
+    /* progress bar */
+    .progress{
+      height: 12px;
+      background: rgba(17,24,39,.08);
+      border-radius: 999px;
+      overflow:hidden;
+      border: 1px solid rgba(229,231,235,.95);
+      width: 100%;
+      max-width: 320px;
+    }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(135deg, var(--red), var(--green));
+      transition: width 350ms ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header-plaats"></div>
+  <div id="menu-plaats"></div>
+
+  <main class="container quiz-wrap">
+    <span class="kicker">Quiz</span>
+    <h1>Quiz over het goede doel</h1>
+    <p class="lead">Test je kennis en ontdek hoe jouw bijdrage helpt. Kies steeds één antwoord.</p>
+
+    <section class="quiz-card" aria-label="Quiz">
+      <div class="quiz-top">
+        <div class="pill"><small>Vraag</small> <span id="qIndex">1</span>/<span id="qTotal">5</span></div>
+        <div class="pill"><small>Score</small> <span id="scoreNow">0</span></div>
+        <div class="progress" aria-label="Voortgang"><div id="progressFill"></div></div>
+      </div>
+
+      <h2 class="q-title" id="questionText">...</h2>
+      <div class="answers" id="answers"></div>
+
+      <div class="explain" id="explainBox">
+        <strong id="explainTitle">Feedback</strong>
+        <span id="explainText"></span>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn" id="restartBtn" type="button">Opnieuw</button>
+        <button class="btn primary" id="nextBtn" type="button" disabled>Volgende</button>
+      </div>
+
+      <div class="result" id="resultBox" aria-label="Resultaat">
+        <h2>Resultaat</h2>
+        <div class="big" id="resultScore">0/5</div>
+        <p id="resultMessage"></p>
+        <p class="muted" id="resultTip"></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="script.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
