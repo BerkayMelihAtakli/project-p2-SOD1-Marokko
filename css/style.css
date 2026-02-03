@@ -28,7 +28,6 @@ body{
   flex-direction:column;
 }
 main{ flex:1; }
-
 .container{
   width:min(1040px, 92vw);
   margin:0 auto;
@@ -40,7 +39,6 @@ header{
   color:#fff;
   padding:38px 0;
   position:relative;
-  overflow:hidden;
 }
 header::after{
   content:"";
@@ -192,8 +190,7 @@ footer span {
 /* jouw menu element */
 #menu-plaats nav.main-menu{
   position: relative;
-  border-radius: 18px;
-  overflow: hidden;       /* hier mag het wél: alleen het menu zelf */
+  border-radius: 18px;    /* hier mag het wél: alleen het menu zelf */
   isolation: isolate;     /* super belangrijk: fixe z-index lagen betrouwbaar */
   backdrop-filter: blur(10px);
 }
@@ -260,7 +257,6 @@ footer span {
   margin: 12px auto 0;
   width: min(1040px, 92vw);
   border-radius: 18px;
-  overflow: hidden;
   isolation: isolate;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
