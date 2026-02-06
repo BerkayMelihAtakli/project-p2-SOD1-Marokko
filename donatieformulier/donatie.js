@@ -4,7 +4,7 @@
 (() => {
   // Startwaarden (eis: basisbedrag)
   const GOAL = 5000;
-  let raised = 3500;
+  let raised = 0;
 
   // Elements
   const raisedEl = document.getElementById("raisedAmount");
@@ -53,13 +53,11 @@
     }
   }
 
-  // Init
   setUI(false);
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // HTML5 validity check
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
