@@ -1,4 +1,4 @@
-/* ===== Donatie progress ===== */
+donatie-progress
 .donatie-progress{
   margin: 18px 0 22px;
   padding: 16px;
@@ -39,4 +39,95 @@
 
 @media (max-width: 720px){
   .progress-stats{ grid-template-columns: 1fr; }
+}
+
+Reclame pop up
+.popup-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-overlay.show{
+  display: flex;
+}
+
+.popup-box{
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  width: min(420px, 90vw);
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(17,24,39,.25);
+  border: 1px solid var(--border);
+  position: relative;
+  animation: popupFade .35s ease;
+}
+
+@keyframes popupFade{
+  from{ transform: translateY(20px); opacity:0; }
+  to{ transform: translateY(0); opacity:1; }
+}
+
+.popup-box h2{
+  margin-top:0;
+}
+
+.popup-btn{
+  display:inline-block;
+  margin-top:14px;
+  padding:12px 18px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:900;
+  color:#fff;
+  background: linear-gradient(135deg,var(--red),var(--green));
+}
+
+.popup-close{
+  position:absolute;
+  top:10px;
+  right:14px;
+  border:none;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
+}
+.popup-box{
+  position: relative;
+  z-index: 10000;
+}
+
+.popup-close{
+  position: absolute;
+  z-index: 10001;
+}
+.popup-overlay { z-index: 99999; }
+.popup-box { position: relative; z-index: 100000; }
+.popup-close { position: absolute; z-index: 100001; pointer-events: auto; }
+
+/* Forceer dat popup altijd boven alles zit en klikbaar is */
+.popup-overlay{
+  z-index: 2147483647 !important;   /* absurd hoog */
+  pointer-events: auto !important;
+}
+
+.popup-overlay.show{
+  pointer-events: auto !important;
+}
+
+.popup-box{
+  position: relative !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+}
+
+.popup-close{
+  position: absolute !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
 }

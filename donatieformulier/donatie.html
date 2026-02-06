@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Donatie doorgeven</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -47,7 +47,7 @@
   <p class="progress-hint" id="remainingText">Nog € 5.000 te gaan</p>
 </section>
 
-    <form>
+    <form id="donatieForm">
       <label>Volledige naam *</label>
       <input type="text" required>
 
@@ -84,10 +84,20 @@
       <button type="reset">Annuleren</button>
     </form>
   </main>
+<div id="donatiePopup" class="popup-overlay">
+  <div class="popup-box">
+    <button type="button" class="popup-close" id="popupClose">&times;</button>
 
+    <h2>Help ons doel bereiken.</h2>
+    <p>Elke bijdrage helpt. Samen maken we impact!</p>
+
+    <a href="#bedrag" class="popup-btn">Doneer nu!</a>
+  </div>
+</div>
   <div id="footer-placeholder"></div>
 <script src="donatie.js"></script>
 <script src="/script.js"></script>
 <script src="script.js"></script>
+<script src="popup.js"></script>
 </body>
 </html>
